@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,15 +26,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tela_cartao_de_visita.ui.theme.TelaCartaodeVisitaTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 class MainActivity : ComponentActivity() {
@@ -66,6 +65,8 @@ fun ComposeTela() {
         )
         ComposableRow2(
             phoneIcon = Icons.Default.Call,
+            shareIcon = Icons.Default.Share,
+            emailIcon = Icons.Default.Email,
             phone = stringResource(R.string.phone),
             email = stringResource(R.string.email),
             instagram = stringResource(R.string.instagram)
@@ -83,7 +84,7 @@ fun ComposableRow1(
     Column(
         modifier = Modifier
             .padding(top = 180.dp, start = 16.dp, end = 16.dp)
-            //.fillMaxWidth()
+            .fillMaxWidth()
     ) {
         Row(
             modifier = Modifier,
@@ -124,27 +125,39 @@ fun ComposableRow1(
 @Composable
 fun ComposableRow2(
     phoneIcon: ImageVector,
+    shareIcon: ImageVector,
+    emailIcon: ImageVector,
     phone: String,
     email: String,
     instagram: String,
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp)
+        modifier = modifier
+            .padding(start = 16.dp, end = 16.dp, bottom = 64.dp)
+            .fillMaxHeight(),
+            verticalArrangement = Arrangement.Bottom
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+
         ) {
+            Image(imageVector = phoneIcon, contentDescription = "ícone de telefone")
             Text(
                 text = phone
             )
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
         ) {
+            Image(
+                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                imageVector = shareIcon,
+                contentDescription = "ícone de share")
             Text(
                 text = instagram,
                 modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
@@ -152,8 +165,12 @@ fun ComposableRow2(
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
         ) {
+            Image(
+                imageVector = emailIcon,
+                contentDescription = "ícone de e-mail")
             Text(
                 text = email
             )
