@@ -13,19 +13,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +58,7 @@ class MainActivity : ComponentActivity() {
 fun ComposeTela() {
     Column(
         Modifier
-            .background(Color(0xFF89DE78))
+            .background(Color(0xFF073042))
             .fillMaxSize()
     ) {
         ComposableRow1(
@@ -64,7 +67,7 @@ fun ComposeTela() {
             title = stringResource(R.string.title)
         )
         ComposableRow2(
-            phoneIcon = Icons.Default.Call,
+            phoneIcon = Icons.Default.Phone,
             shareIcon = Icons.Default.Share,
             emailIcon = Icons.Default.Email,
             phone = stringResource(R.string.phone),
@@ -102,7 +105,8 @@ fun ComposableRow1(
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = name,
+                text = (name),
+                color = Color.White,
                 fontSize = 20.sp,
                 modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
             )
@@ -116,6 +120,15 @@ fun ComposableRow1(
                 text = title,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
+                fontSize = 16.sp,
+                style = TextStyle(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(
+                            Color(0xFFC651BD),
+                            Color(0xFFF1850B)
+                        )
+                    )
+                )
             )
         }
     }
@@ -134,45 +147,58 @@ fun ComposableRow2(
 ) {
     Column(
         modifier = modifier
-            .padding(start = 16.dp, end = 16.dp, bottom = 64.dp)
+            .padding(start = 94.dp, end = 50.dp, bottom = 64.dp)
             .fillMaxHeight(),
-            verticalArrangement = Arrangement.Bottom
+        verticalArrangement = Arrangement.Bottom
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-
+                .fillMaxWidth()
         ) {
-            Image(imageVector = phoneIcon, contentDescription = "ícone de telefone")
+            Image(
+                imageVector = phoneIcon,
+                contentDescription = "ícone de telefone",
+                modifier = Modifier
+                    .padding(end = 8.dp),
+                colorFilter = ColorFilter.tint(Color.White)
+            )
             Text(
-                text = phone
+                text = (phone),
+                color = Color.White,
             )
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+                .fillMaxWidth()
         ) {
             Image(
-                modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                modifier = Modifier
+                    .padding(end = 8.dp, top = 8.dp, bottom = 8.dp),
                 imageVector = shareIcon,
-                contentDescription = "ícone de share")
+                contentDescription = "ícone de share",
+                colorFilter = ColorFilter.tint(Color.White)
+            )
             Text(
-                text = instagram,
+                text = (instagram),
+                color = Color.White,
                 modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
             )
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+                .fillMaxWidth()
         ) {
             Image(
+                modifier= Modifier
+                    .padding(end = 8.dp),
                 imageVector = emailIcon,
-                contentDescription = "ícone de e-mail")
+                contentDescription = "ícone de e-mail",
+                colorFilter = ColorFilter.tint(Color.White)
+
+            )
             Text(
-                text = email
+                text = (email),
+                color = Color.White
             )
         }
     }
